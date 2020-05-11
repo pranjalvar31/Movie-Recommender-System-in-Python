@@ -4,9 +4,9 @@ import tkinter as tk
 root = tk.Tk() 
 frame = tk.Frame(root) 
 frame.pack() 
-bottomframe = tk.Frame(root) 
-bottomframe.pack( side = 'bottom' ) 
 
+tk.Label(root, text="Movie Recommender").pack()
+root.geometry("680x500")
 
 import pandas as pd
 pd.set_option('mode.chained_assignment', None)
@@ -128,7 +128,7 @@ def sortt(byy):
   v=impdataset2.reset_index(level=None)["index"]  
 sortt("Rating")
 i=0
-Lb = tk.Listbox(root,selectmode='multiple') 
+Lb = tk.Listbox(root,selectmode='multiple',width="600",height="450") 
 while(i<1000):
   Lb.insert(i+1,impdataset.loc[u[i]].values[0]) 
   i=i+1
@@ -147,7 +147,7 @@ def func():
    while(i<1000):
      Lb.insert(i+1,impdataset2.loc[v[999-i]].values[0]) 
      i=i+1
-   b.configure( text="Ad2", command=func2)
+   b.configure( text="Select the movie you hate", command=func2)
    print(pp)
    print(traindata)
    
@@ -165,12 +165,11 @@ def func2():
    myfun()
       
  
-b = tk.Button(root, text="Ad", command=func)
+b = tk.Button(root, text="Select the movie you like", command=func)
 
 b.pack(side='top')
-Lb.pack(side='top')  
-scrollbar = tk.Scrollbar(root) 
-scrollbar.pack( side = 'right', fill = 'y' ) 
+Lb.pack(side='top',)  
+
 traindata=impdataset.iloc[[i for i in pp],:] 
 from keras.models import Sequential
 from keras.layers import Dense
@@ -207,7 +206,7 @@ def myfun():
   while(i<1000):
     Lb.insert(i+1,impdataset.loc[u[i]].values[0]) 
     i=i+1
-  b.configure( text="Ad4", command=func)
+  b.configure( text="Recommended Movies, Proceed until you find a good one", command=func)
   
  
       
